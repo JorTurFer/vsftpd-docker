@@ -1,0 +1,21 @@
+version: '2'
+services:
+    ftp:
+      image: vsftpd
+      container_name: ftp
+      volumes:
+        - /home/foo/dockers/vsftpd/data:/home
+      environment:
+        - FTP_USER=ftpuser
+        - FTP_PASS=supersecret
+        - PASV_ENABLE=YES
+        - PASV_ADDRESS=192.168.10.12
+        - PASV_MIN= 10000
+        - PASV_MAX= 11000
+        - TLS_CN=localhost
+        - TLS_ORG=Demo
+        - TLS_C=UK
+        - TLS_USE_DSAPRAM=true
+      ports:
+        - "8021:21"
+        - "10000-11000:10000-11000"
